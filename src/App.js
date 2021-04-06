@@ -2,7 +2,7 @@ import {MapRoutes} from "./libs/routes";
 import {routes} from "./pages";
 
 
-const App = () => {
+const App = (props) => {
   return (
       <MapRoutes routes={routes}/>
   );

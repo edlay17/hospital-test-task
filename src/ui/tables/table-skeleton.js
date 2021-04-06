@@ -6,14 +6,15 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: theme.palette.primary.main,
         color: theme.palette.common.white,
     },
     body: {
-        fontSize: 14,
+        fontSize: theme.spacing(2),
     },
 }))(TableCell);
 
@@ -29,48 +30,55 @@ const StyledTableRow = withStyles((theme) => ({
 
 const useStyles = makeStyles((theme) => ({
     table: {
-        minWidth: theme.spacing(100),
+        minWidth: 700,
     },
     root: {
         marginTop: theme.spacing(5),
         marginBottom: theme.spacing(5),
+    },
+    row: {
+        height: theme.spacing(10),
+        marginTop: 0,
+        marginBotom: theme.spacing(5),
+    },
+    rows: {
+        padding: 0,
     }
 }));
 
-const CustomizedTables = (props) => {
+const CustomizedTableSkeleton = (props) => {
+    const {count} = props;
+
     const classes = useStyles();
-    const helloWorld = (mes) => {
-        alert(mes);
-    };
-    const headerRowLenght = props.headerRow.length;
-    const tableHeader = props.headerRow.map((elem, index) => {
-        if (index + 1 === headerRowLenght) {
-            return <StyledTableCell align="right">{elem}</StyledTableCell>
-        }
-        return <StyledTableCell>{elem}</StyledTableCell>
-    });
-    const tableRows = props.rows.map((row) => (
-        <StyledTableRow key={row.id} onClick={() => {helloWorld(row.name)}}>
-            <StyledTableCell>{row.id}</StyledTableCell>
-            <StyledTableCell align="left">{row.name}</StyledTableCell>
-            <StyledTableCell align="right">{row.bdate}</StyledTableCell>
-        </StyledTableRow>
-    ));
+    let skeletonItems = [];
+    for (let i = 0; i < count; i++){
+        skeletonItems.push(
+            <StyledTableRow>
+                <StyledTableCell><Skeleton/></StyledTableCell>
+                <StyledTableCell><Skeleton/></StyledTableCell>
+                <StyledTableCell align="right"><Skeleton/></StyledTableCell>
+            </StyledTableRow>
+        )
+    }
 
     return (
         <TableContainer component={Paper} className={classes.root}>
             <Table className={classes.table} aria-label="customized table">
                 <TableHead>
                     <TableRow>
-                        {tableHeader}
+                        <StyledTableCell>
+                            loading...
+                        </StyledTableCell>
+                        <StyledTableCell></StyledTableCell>
+                        <StyledTableCell></StyledTableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody>
-                    {tableRows}
+                <TableBody className={classes.rows}>
+                    {skeletonItems}
                 </TableBody>
             </Table>
         </TableContainer>
     );
 }
 
-export default CustomizedTables;
+export default CustomizedTableSkeleton;

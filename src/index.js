@@ -8,16 +8,36 @@ import {
 
 import './index.css';
 import App from './App';
+import {
+    applyMiddleware,
+    combineReducers,
+    createStore
+} from 'redux';
+import thunk from "redux-thunk";
+import {Provider} from "react-redux";
+import employeesTableReducer from "./features/employees-table/model/employees-table-reducer";
+import employeeSingleReducer from "./features/single-employee/model/single-employee-reducer";
+
 
 const theme = createMuiTheme();
+let reducers = combineReducers({
+    empl: employeesTableReducer,
+    singleEmpl: employeeSingleReducer
+});
+let store = createStore(
+    reducers,
+    applyMiddleware(thunk)
+);
 
 ReactDOM.render(
   <React.StrictMode>
       <Router>
           <CssBaseline />
-          <ThemeProvider theme={theme}>
-            <App />
-          </ThemeProvider>
+          <Provider store={store}>
+              <ThemeProvider theme={theme}>
+                <App/>
+              </ThemeProvider>
+          </Provider>
       </Router>
   </React.StrictMode>,
   document.getElementById('root')
