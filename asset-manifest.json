@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/hospital-test-task/static/css/main.2ae47eeb.chunk.css",
+    "main.js": "/hospital-test-task/static/js/main.99d09095.chunk.js",
+    "main.js.map": "/hospital-test-task/static/js/main.99d09095.chunk.js.map",
+    "runtime-main.js": "/hospital-test-task/static/js/runtime-main.588208bc.js",
+    "runtime-main.js.map": "/hospital-test-task/static/js/runtime-main.588208bc.js.map",
+    "static/js/2.8cb37b38.chunk.js": "/hospital-test-task/static/js/2.8cb37b38.chunk.js",
+    "static/js/2.8cb37b38.chunk.js.map": "/hospital-test-task/static/js/2.8cb37b38.chunk.js.map",
+    "index.html": "/hospital-test-task/index.html",
+    "static/css/main.2ae47eeb.chunk.css.map": "/hospital-test-task/static/css/main.2ae47eeb.chunk.css.map",
+    "static/js/2.8cb37b38.chunk.js.LICENSE.txt": "/hospital-test-task/static/js/2.8cb37b38.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.588208bc.js",
+    "static/js/2.8cb37b38.chunk.js",
+    "static/css/main.2ae47eeb.chunk.css",
+    "static/js/main.99d09095.chunk.js"
+  ]
+}
