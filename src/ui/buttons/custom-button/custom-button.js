@@ -1,13 +1,9 @@
+// libs
 import Button from '@material-ui/core/Button';
-import {makeStyles} from "@material-ui/core/styles";
 import { Link as RouterLink } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        marginTop: theme.spacing(3),
-        marginBottom: theme.spacing(3),
-    }
-}));
+// styles
+import useStyles from "./styles";
 
 const CustomButton = (props) => {
     const {text, toUrl} = props;

@@ -31,14 +31,14 @@ let store = createStore(
 
 ReactDOM.render(
   <React.StrictMode>
-      <Router>
+      <HashRouter>
           <CssBaseline />
           <Provider store={store}>
               <ThemeProvider theme={theme}>
                 <App/>
               </ThemeProvider>
           </Provider>
-      </Router>
+      </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,7 +1,12 @@
-import CustomizedTableWithLinks from "../../../ui/tables/table-with-links";
-import CustomizedTableSkeleton from "../../../ui/tables/table-skeleton";
+// libs
 import {useEffect} from "react";
 import {useDispatch, useSelector} from 'react-redux';
+
+// ui
+import CustomizedTableWithLinks from "../../../ui/tables/table-with-links/table-with-links";
+import CustomizedTableSkeleton from "../../../ui/tables/table-skeleton/table-skeleton";
+
+// model
 import {emplTableReset, getEmployeesData} from "../model/employees-table-reducer";
 
 const EmployeesTable = (props) => {
@@ -17,7 +22,7 @@ const EmployeesTable = (props) => {
         };
     },[])
 
-    const employeesDataWithUrl = employeesData.map((elem)=>{
+    const employeesDataWithUrl = employeesData.map((elem)=>{ // add urls to data
         return {...elem, url: `/employees/${elem.id}`}
     })
 

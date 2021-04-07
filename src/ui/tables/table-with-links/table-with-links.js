@@ -1,43 +1,16 @@
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+// libs
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Link as RouterLink } from 'react-router-dom';
 
-const StyledTableCell = withStyles((theme) => ({
-    head: {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.common.white,
-    },
-    body: {
-        fontSize: theme.spacing(2),
-    },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-    root: {
-        '&:hover': {
-            backgroundColor: theme.palette.action.hover,
-            cursor: "pointer",
-        },
-        textDecoration: "none",
-    },
-}))(TableRow);
-
-
-const useStyles = makeStyles((theme) => ({
-    table: {
-        minWidth: theme.spacing(100),
-    },
-    root: {
-        marginTop: theme.spacing(5),
-        marginBottom: theme.spacing(5),
-    }
-}));
+// styles
+import useStyles from "./styles";
+import StyledTableRow from "../styles/styled-tab-row";
+import StyledTableCell from "../styles/styled-table-cell";
 
 const CustomizedTableWithLinks = (props) => {
     const {rows, headerRow} = props;

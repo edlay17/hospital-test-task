@@ -1,7 +1,12 @@
+// libs
 import Container from "@material-ui/core/Container";
-import CustomButton from "../../ui/buttons/custom-button";
-import SingleEmployeeTable from "../../features/single-employee/components";
 import {useParams} from "react-router-dom";
+
+// ui
+import CustomButton from "../../ui/buttons/custom-button/custom-button";
+
+// features
+import SingleEmployeeTable from "../../features/single-employee/components";
 
 const SingleEmploee = (props) => {
     let {id} = useParams();

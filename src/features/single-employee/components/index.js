@@ -1,9 +1,14 @@
-import CustomizedTable from "../../../ui/tables/table";
-import CustomizedTableSkeleton from "../../../ui/tables/table-skeleton";
+// libs
 import {useDispatch, useSelector} from "react-redux";
-import {emplSingleReset, getSingleEmployeeData} from "../model/single-employee-reducer";
 import {useEffect, useState} from "react";
 import {Redirect} from "react-router-dom";
+
+// ui
+import CustomizedTable from "../../../ui/tables/table/table";
+import CustomizedTableSkeleton from "../../../ui/tables/table-skeleton/table-skeleton";
+
+// model
+import {emplSingleReset, getSingleEmployeeData} from "../model/single-employee-reducer";
 
 const SingleEmployeeTable = (props) => {
     const {id} = props;
@@ -13,7 +18,6 @@ const SingleEmployeeTable = (props) => {
     const tableHeaderData = useSelector(state => state.singleEmpl.headerData);
     const isFindById = useSelector(state => state.singleEmpl.isFindById);
     const employeeInfo = useSelector(state => state.singleEmpl.employeeInfo);
-    //const [isNotFound, toggleIsNotFound] = useState(false);
 
     useEffect(() => {
         dispatch(getSingleEmployeeData(id));
@@ -22,15 +26,9 @@ const SingleEmployeeTable = (props) => {
         };
     },[id])
 
-    /*
-    if(!isFetching && isFindById && employeesData.length < 1){
-        return <div>nothing information about this employee</div>
-    }
-    isNotFound && <Redirect to="/404" />
-     */
-    debugger;
     return (
         <>
+            {(!isFetching && !isFindById) && <Redirect to="/404" />}
             {isFetching
                 ? <CustomizedTableSkeleton count={5}/>
                 :
@@ -41,7 +39,11 @@ const SingleEmployeeTable = (props) => {
                         <div>
                             {employeeInfo.phone}
                         </div>
-                        <CustomizedTable rows={employeesData} headerRow={tableHeaderData}/>
+                        {employeesData.length > 0
+                            ?   <CustomizedTable rows={employeesData} headerRow={tableHeaderData}/>
+                            :   <div>nothing information about this employee</div>
+                        }
+
                     </>
             }
         </>

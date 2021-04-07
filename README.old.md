@@ -1,1 +1,0 @@
-# hospital-test-task

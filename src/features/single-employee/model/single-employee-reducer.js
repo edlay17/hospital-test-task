@@ -33,7 +33,7 @@ export const getSingleEmployeeData = (id) => async (dispatch, getState) => {
     dispatch(emplSingleGetEmployeeInfo(employees, id));
     const worklog = await getWorklog();
     dispatch(emplSingleSetWorkLog(worklog));
-    let data = getState().singleEmpl.workLog.map((elem1) => { // {id: 1, emp_id: 1, from: 1617500684000, to: 1617507969000}
+    let data = getState().singleEmpl.workLog.map((elem1) => { // format of elem1 => {id: 1, emp_id: 1, from: 1617500684000, to: 1617507969000}
         if(elem1.emp_id == id){
             let employeesOnWorkNow = [];
             getState().singleEmpl.workLog.forEach((elem2) => { // elem1 - current employee, elem2 - some employee from workLog
@@ -47,8 +47,12 @@ export const getSingleEmployeeData = (id) => async (dispatch, getState) => {
             })
 
             let isViolation;
-            if (employeesOnWorkNow.length>1)isViolation=false;
-            else isViolation=true;
+            if (employeesOnWorkNow.length>=getState().singleEmpl.minCountAnotherEmployees){
+                isViolation=false;
+            }
+            else {
+                isViolation=true;
+            }
             return {
                 id: elem1.id,
                 from: timestampToDate(elem1.from),
@@ -73,10 +77,20 @@ const dateToTimestamp = (dateString) => {
 const timestampToDate = (timestamp) => {
     let date = new Date();
     date.setTime(timestamp);
-    return `${('0' + date.getDate()).slice(-2)}.${('0' + date.getMonth()).slice(-2)}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    const day = addNull(date.getDate());
+    const month = addNull(date.getMonth());
+    const year = date.getFullYear();
+    const hours = addNull(date.getHours());
+    const minutes = addNull(date.getMinutes());
+    const seconds = addNull(date.getSeconds());
+    return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
+}
+const addNull = (date) => {
+    return ('0' + date).slice(-2);
 }
 
 const InitialState = {
+    minCountAnotherEmployees: 2,
     isFetching: true,
     isFindById: false,
     employeeInfo: {},

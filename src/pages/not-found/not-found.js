@@ -1,6 +1,9 @@
+// libs
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import CustomButton from "../../ui/buttons/custom-button";
+
+// ui
+import CustomButton from "../../ui/buttons/custom-button/custom-button";
 
 const NotFoundPage = (props) => {
     return (
